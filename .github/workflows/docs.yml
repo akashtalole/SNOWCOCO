@@ -7,6 +7,7 @@ on:
       - "docs/**"
       - "hooks/**"
       - "mkdocs.yml"
+      - "requirements-docs.txt"
       - "tracks/risk_fraud_copilot/README.md"
       - "tracks/risk_fraud_copilot/coco/README.md"
       - ".github/workflows/docs.yml"
@@ -14,13 +15,18 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: docs
   cancel-in-progress: true
 
+env:
+  DISABLE_MKDOCS_2_WARNING: "true"
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,8 +35,20 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements-docs.txt
       - run: mkdocs build --strict
-        env:
-          DISABLE_MKDOCS_2_WARNING: "true"
+      # Works when Settings > Pages > Source is "Deploy from a branch: gh-pages".
       - run: mkdocs gh-deploy --force
-        env:
-          DISABLE_MKDOCS_2_WARNING: "true"
+      # Works when Settings > Pages > Source is "GitHub Actions".
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
