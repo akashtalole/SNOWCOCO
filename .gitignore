@@ -9,3 +9,6 @@ tracks/*/data/*.csv
 
 # Generated at runtime as findings/actions/recommendations are created via each track's API/UI
 tracks/*/data/*.json
+
+# MkDocs local build output
+site/

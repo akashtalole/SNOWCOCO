@@ -5,7 +5,7 @@ prototype one directory up (`tracks/risk_fraud_copilot/`) re-platforms onto Snow
 CLI, following the official problem-statement slide for this track (see quote below). It started as
 a design + scaffold and has since been **validated end-to-end against a real, live Snowflake
 account** — see "Live Pilot Results" below for what has actually been run, with real captured
-output. The Streamlit app and MCP connector remain scaffold-only (not deployed). See
+output, including a deployed Streamlit-in-Snowflake app. Only the external MCP connector remains scaffold-only (not deployed). See
 [`docs/coco_cli_architecture.md`](../../../docs/coco_cli_architecture.md) for the shared
 agent-architecture context this scaffold is built against.
 
@@ -73,8 +73,8 @@ the other four tracks' live pass followed.
 (all facts/dimensions/metrics from `02_semantic_views.sql`), a real `POLICY_SEARCH_SERVICE` Cortex
 Search service over all 31 policy sections chunked from `../policies/*.md`, and a deployed Cortex
 Agent (`RISK_FRAUD_REGULATORY_COPILOT`) actually invoked via the Cortex Agents REST API.
-**Not deployed:** the Streamlit app (`05_streamlit_app.py`) and the MCP connector (`06_mcp_connector.md`)
-remain scaffold-only.
+The Streamlit app (`05_streamlit_app.py`) is also deployed (see "Streamlit app" below).
+**Not deployed:** the external MCP connector (`06_mcp_connector.md`) remains scaffold-only.
 
 **Real bugs found and fixed by running this live (not by inspection):**
 

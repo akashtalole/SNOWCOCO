@@ -1,0 +1,50 @@
+site_name: SNOWCOCO - Risk, Fraud & Regulatory Intelligence Copilot
+site_description: Snowflake CoCo CLI Hackathon 2026 (GCC Edition), Track 1. Cited, audit-ready AML and fraud findings from plain-English questions.
+site_url: https://akashtalole.github.io/SNOWCOCO/
+repo_url: https://github.com/akashtalole/SNOWCOCO
+repo_name: akashtalole/SNOWCOCO
+edit_uri: ""
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: cyan
+      toggle: { icon: material/weather-night, name: Switch to dark mode }
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: cyan
+      toggle: { icon: material/weather-sunny, name: Switch to light mode }
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - toc.follow
+
+plugins:
+  - search
+  - gen-files:
+      scripts:
+        - hooks/gen_pages.py
+
+exclude_docs: |
+  screenshots/streamlit/capture/
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Architecture: coco_cli_architecture.md
+  - Prototype: prototype.md
+  - Snowflake build: snowflake-build.md
+  - App screenshots: streamlit_screenshots.md
+  - Judge access: judge_access.md

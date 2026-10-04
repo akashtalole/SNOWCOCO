@@ -7,6 +7,8 @@ plus a documented, audit-ready finding. Example: *"Why was ACC-1001 flagged?"* r
 sub-threshold cash deposits totalling $36,550 in 5 days, policy AML-TM-2 and the evidence
 transaction IDs. All data is synthetic.
 
+**Docs site:** <https://akashtalole.github.io/SNOWCOCO/> (built with MkDocs; see `mkdocs.yml`)
+
 ## What is here
 
 | Path | What it is |
@@ -46,6 +48,13 @@ real outputs and the bugs found along the way are in `tracks/risk_fraud_copilot/
   scoring did not resolve ground truth on the pilot account.
 - No external MCP connector (Slack or a case system) is connected yet; it needs a credential.
 - Time saved for analysts has not been measured.
+
+## Build the docs locally
+
+```bash
+pip install -r requirements-docs.txt
+mkdocs serve
+```
 
 ## License
 
