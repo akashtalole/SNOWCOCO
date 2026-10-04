@@ -1,0 +1,1121 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Snowflake CoCo CLI Hackathon 2026 (GCC Edition), Track 1. Cited, audit-ready AML and fraud findings from plain-English questions.">
+      
+      
+      
+        <link rel="canonical" href="https://akashtalole.github.io/SNOWCOCO/prototype/">
+      
+      
+        <link rel="prev" href="../coco_cli_architecture/">
+      
+      
+        <link rel="next" href="../snowflake-build/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Prototype - SNOWCOCO - Risk, Fraud & Regulatory Intelligence Copilot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#risk-fraud-regulatory-intelligence-copilot" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SNOWCOCO - Risk, Fraud &amp; Regulatory Intelligence Copilot" class="md-header__button md-logo" aria-label="SNOWCOCO - Risk, Fraud & Regulatory Intelligence Copilot" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SNOWCOCO - Risk, Fraud & Regulatory Intelligence Copilot
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Prototype
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/akashtalole/SNOWCOCO" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    akashtalole/SNOWCOCO
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SNOWCOCO - Risk, Fraud &amp; Regulatory Intelligence Copilot" class="md-nav__button md-logo" aria-label="SNOWCOCO - Risk, Fraud & Regulatory Intelligence Copilot" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SNOWCOCO - Risk, Fraud & Regulatory Intelligence Copilot
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/akashtalole/SNOWCOCO" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    akashtalole/SNOWCOCO
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coco_cli_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prototype
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prototype
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-does-signal-evidence-documented-finding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does (signal → evidence → documented finding)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upi-fraud-mule-account-network-detection-india" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UPI Fraud &amp; Mule Account Network Detection (India)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedded-synthetic-risk-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedded synthetic risk patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#judging-criteria-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Judging-criteria mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recent-additions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recent additions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-toward-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending toward production
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snowflake-coco-cli-solution-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Snowflake / CoCo CLI solution design
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snowflake-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snowflake build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streamlit_screenshots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App screenshots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../judge_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Judge access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-does-signal-evidence-documented-finding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does (signal → evidence → documented finding)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upi-fraud-mule-account-network-detection-india" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UPI Fraud &amp; Mule Account Network Detection (India)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedded-synthetic-risk-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedded synthetic risk patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#judging-criteria-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Judging-criteria mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recent-additions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recent additions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-toward-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending toward production
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snowflake-coco-cli-solution-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Snowflake / CoCo CLI solution design
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="risk-fraud-regulatory-intelligence-copilot">Risk, Fraud &amp; Regulatory Intelligence Copilot<a class="headerlink" href="#risk-fraud-regulatory-intelligence-copilot" title="Permanent link">&para;</a></h1>
+<p>A working prototype built for the <strong>Risk, Fraud and Regulatory Intelligence Copilot</strong> hackathon
+track. Banking/NBFC risk, fraud and compliance teams manage transaction monitoring, AML alerts,
+and regulatory reporting largely by hand today. This copilot combines transaction/account data
+with policy and regulatory text so a compliance or business user can ask a natural-language
+question and get a <strong>governed, explainable, evidence-backed answer</strong> — and turn a detected signal
+into an <strong>audit-ready finding/report</strong> in one click.</p>
+<blockquote>
+<p>⚠️ <strong>All data in this repository is synthetic.</strong> Customers, accounts, transactions, and even
+the jurisdiction codes and dollar thresholds in the policy documents are fabricated for this
+demo. Nothing here is real regulatory guidance or a real filing.</p>
+</blockquote>
+<h2 id="what-it-does-signal-evidence-documented-finding">What it does (signal → evidence → documented finding)<a class="headerlink" href="#what-it-does-signal-evidence-documented-finding" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Signal detection</strong> — a rule-based engine scans synthetic transaction data for five classic
+   AML/fraud typologies: structuring/smurfing, rapid layering, dormant-account reactivation,
+   high-risk-jurisdiction wires, and ATM card-testing/mule activity. Every signal records <em>why</em>
+   it fired and <em>which transactions</em> are the evidence.</li>
+<li><strong>Policy grounding</strong> — a small corpus of synthetic policy documents (AML transaction
+   monitoring, KYC risk rating, sanctions screening, CTR, Basel LCR) is indexed with a
+   dependency-free TF-IDF retriever, section by section, so every answer can cite the exact
+   policy clause behind it (e.g. <code>AML-TM-2</code>).</li>
+<li><strong>Governed Q&amp;A</strong> — ask questions in plain English ("Why was ACC-1001 flagged?", "What's the
+   CTR threshold?", "Show me high-risk jurisdiction activity"). Answers are always composed
+   <strong>only</strong> from the retrieved signals/transactions and cited policy sections — never an opaque
+   prediction. If <code>ANTHROPIC_API_KEY</code> is set, Claude is used only to <em>phrase</em> the already-grounded
+   facts more naturally; the IDs and citations are never LLM-generated. Without a key, a
+   deterministic template composer produces the same grounded answer.</li>
+<li><strong>Audit-ready findings</strong> — turn any signal into a <code>Finding</code>: a structured record with a
+   narrative, the full evidence chronology (transaction table), the regulatory basis (cited
+   policy sections with snippets), a recommended action, and a status workflow
+   (Open → Under Review → Filed → Closed). Each finding renders as a Markdown report suitable for
+   compliance file retention.</li>
+</ol>
+<h2 id="upi-fraud-mule-account-network-detection-india">UPI Fraud &amp; Mule Account Network Detection (India)<a class="headerlink" href="#upi-fraud-mule-account-network-detection-india" title="Permanent link">&para;</a></h2>
+<p>The hardest, highest-impact fraud problem on India's real-time payments rail isn't a single
+suspicious transaction — it's a <strong>mule account network</strong>: a victim is socially engineered (OTP
+sharing, a fake collect request, an investment scam) into paying a "mule" account, and the money
+is then rapidly relayed through a short chain of further mule accounts before cash-out, so no
+single account's own history reveals the whole picture. Every other detector in this track (and
+in most transaction-monitoring systems) looks at one account at a time; this module adds a
+<strong>graph-based detector</strong> that doesn't.</p>
+<ul>
+<li><strong><code>engine/signals.py: detect_upi_mule_hub</code></strong> flags a single account with the classic
+  fan-in/fan-out "pass-through" signature: credits from 5+ distinct UPI senders (VPAs) within 48
+  hours, followed by 70%+ of that value paid straight back out to 3+ distinct receivers within the
+  next 24 hours (<strong>UPI-MULE-2</strong>).</li>
+<li><strong><code>engine/signals.py: detect_upi_mule_ring</code></strong> is the standout piece: it takes the individually
+  flagged hub accounts and unions them into connected components (via a small in-memory
+  union-find) wherever one hub's payout target is <em>itself</em> another flagged hub. A multi-hop
+  laundering chain — hub → hub → hub — gets recognized as <strong>one network</strong>, not three unrelated
+  alerts, which is exactly what a real fraud-ops team needs to act on (freeze the whole ring, not
+  one node of it) (<strong>UPI-MULE-3</strong>). The ring signal carries a full node/edge graph
+  (<code>details.ring_nodes</code> / <code>details.ring_edges</code>) that the UI renders as an <strong>interactive network
+  diagram</strong> — this flows through <code>/api/signals</code>, the Ask tab, and the generated Finding's report
+  with zero changes to <code>main.py</code>, since the existing generic endpoints already serialize whatever
+  a detector puts in <code>Signal.details</code>.</li>
+<li><strong><code>detect_upi_new_beneficiary_high_value</code></strong> flags a first-ever payment to a new VPA for 5x+ the
+  account's average UPI payment size — the OTP-sharing/social-engineering victim pattern
+  (<strong>UPI-MULE-4</strong>).</li>
+<li><strong><code>detect_upi_dormant_reactivation</code></strong> flags a VPA dormant for 60+ days suddenly receiving a
+  burst of credits from 3+ unrelated senders — freshly recruited mules sit unused until a ring is
+  ready to route funds through them (<strong>UPI-MULE-5</strong>).</li>
+</ul>
+<p>All four are grounded in <code>policies/upi_fraud_mule_detection.md</code> (synthetic, modeled loosely on
+NPCI/RBI-style UPI risk-control concepts — see that file's own disclaimer), including a reference
+to where a production version would hand off to India's real <strong>1930</strong> cybercrime helpline and the
+<strong>CFCFRMS</strong> (Citizen Financial Cyber Fraud Reporting and Management System) — this demo files
+nothing with any real system, it just documents the real workflow it's modeling.</p>
+<p>Demo scenario (<code>seed_data.py</code>): <code>ACC-1009</code> is a 3-hub mule ring root, fanning out to <code>ACC-1010</code>
+and <code>ACC-1011</code>, each of which independently <em>also</em> exhibits the hub signature and further
+disperses to external cash-out VPAs — so the demo shows both "3 separate hub alerts" and, from the
+ring detector, "these 3 are one network moving ₹7,46,000" side by side. <code>ACC-1012</code> is a clean
+new-beneficiary victim case; <code>ACC-1013</code> is a dormant-VPA reactivation. Amounts in this module are
+in INR with Indian digit grouping (<code>format_inr</code> in <code>engine/signals.py</code>, e.g. <code>₹7,46,000</code>), and a
+third of the ordinary "noise" accounts get everyday UPI activity too, so the mule ring isn't the
+only thing on the rail.</p>
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>tracks/risk_fraud_copilot/
+  seed_data.py         synthetic customers/accounts/transactions generator (13 embedded patterns)
+  data/                generated CSVs (+ findings_store.json, created at runtime)
+  policies/*.md         synthetic, section-numbered policy corpus (AML-TM-*, KYC-RR-*, SANC-*,
+                        CTR-*, LCR-*, UPI-MULE-*) — the citable "ground truth" for answers
+  engine/
+    models.py           CSV loading + DataStore (indexed by account/customer/VPA)
+    signals.py           rule-based + graph-based detectors, one per policy clause; also holds
+                         format_inr() and the union-find used by the UPI mule-ring detector
+    retrieval.py         pure-Python TF-IDF search over policy sections (no ML dependency)
+    qa.py                 NL question router: gathers evidence + citations, composes grounded
+                          answer, optional LLM phrasing pass
+    findings.py           Signal -&gt; audit-ready Finding, JSON persistence, Markdown rendering
+                         (including the mule-ring network table)
+  main.py                FastAPI app: REST API + serves the frontend
+  static/                vanilla HTML/CSS/JS single-page UI (Ask / Signals / UPI Mule Network /
+                        Findings tabs) — the UPI tab renders an inline-SVG network diagram
+</code></pre></div>
+<p>No database, no vector DB, no required external API — the whole "signal → evidence → finding"
+flow runs locally with two pip dependencies (<code>fastapi</code>, <code>uvicorn</code>). This keeps the prototype easy
+to run and easy to audit end-to-end.</p>
+<h3 id="embedded-synthetic-risk-patterns">Embedded synthetic risk patterns<a class="headerlink" href="#embedded-synthetic-risk-patterns" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Account</th>
+<th>Pattern</th>
+<th>Policy clause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACC-1001</td>
+<td>Structuring / smurfing</td>
+<td>AML-TM-2</td>
+</tr>
+<tr>
+<td>ACC-1002</td>
+<td>Rapid layering</td>
+<td>AML-TM-3</td>
+</tr>
+<tr>
+<td>ACC-1003</td>
+<td>Dormant account reactivation</td>
+<td>AML-TM-4</td>
+</tr>
+<tr>
+<td>ACC-1004</td>
+<td>High-risk jurisdiction wires</td>
+<td>AML-TM-5, SANC-2/3</td>
+</tr>
+<tr>
+<td>ACC-1005</td>
+<td>ATM card-testing / mule indicators</td>
+<td>AML-TM-6</td>
+</tr>
+<tr>
+<td>ACC-1006</td>
+<td>Round-dollar international wire pattern</td>
+<td>AML-TM-10</td>
+</tr>
+<tr>
+<td>ACC-1007</td>
+<td>New-account high-value activity</td>
+<td>AML-TM-11</td>
+</tr>
+<tr>
+<td>ACC-1008</td>
+<td>Transaction velocity spike</td>
+<td>AML-TM-12</td>
+</tr>
+<tr>
+<td>ACC-1009</td>
+<td>UPI mule ring root (hub, fan-in/fan-out)</td>
+<td>UPI-MULE-2, UPI-MULE-3</td>
+</tr>
+<tr>
+<td>ACC-1010</td>
+<td>UPI mule ring member A (also its own hub)</td>
+<td>UPI-MULE-2, UPI-MULE-3</td>
+</tr>
+<tr>
+<td>ACC-1011</td>
+<td>UPI mule ring member B (also its own hub)</td>
+<td>UPI-MULE-2, UPI-MULE-3</td>
+</tr>
+<tr>
+<td>ACC-1012</td>
+<td>UPI new-beneficiary high-value (OTP/social-engineering victim)</td>
+<td>UPI-MULE-4</td>
+</tr>
+<tr>
+<td>ACC-1013</td>
+<td>UPI dormant VPA reactivation burst</td>
+<td>UPI-MULE-5</td>
+</tr>
+</tbody>
+</table>
+<p>Plus 20 accounts of ordinary "noise" activity (a third with everyday UPI history too), so signals
+aren't trivially the only data present.</p>
+<h2 id="running-it">Running it<a class="headerlink" href="#running-it" title="Permanent link">&para;</a></h2>
+<p>From the <strong>repository root</strong>:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+python3<span class="w"> </span>-m<span class="w"> </span>tracks.risk_fraud_copilot.seed_data<span class="w">     </span><span class="c1"># generates data/*.csv (only needed once, or to reset)</span>
+uvicorn<span class="w"> </span>tracks.risk_fraud_copilot.main:app<span class="w"> </span>--reload<span class="w"> </span>--port<span class="w"> </span><span class="m">8001</span>
+</code></pre></div>
+<p>Open <a href="http://127.0.0.1:8001/">http://127.0.0.1:8001/</a>. Try the suggested questions on the <strong>Ask</strong> tab, browse detected
+signals on the <strong>Signals</strong> tab, explore the mule network diagram on the <strong>UPI Mule Network</strong> tab,
+or generate/view audit-ready reports on the <strong>Findings &amp; Reports</strong> tab.</p>
+<p>Optional: <code>export ANTHROPIC_API_KEY=sk-...</code> before starting the server to have Claude phrase
+answers in the Ask tab (grounded strictly in the retrieved evidence/citations — see
+<code>engine/qa.py:refine_with_llm</code>). The app works fully without it.</p>
+<h2 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/api/signals</code></td>
+<td>All currently detected signals</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/accounts/{id}</code></td>
+<td>Account 360: account, customer, recent transactions, signals</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/customers/{id}</code></td>
+<td>Customer's accounts + signals</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/policies</code></td>
+<td>Full indexed policy corpus</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/ask</code></td>
+<td><code>{"question": "..."}</code> → grounded answer + evidence + citations</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/findings</code></td>
+<td>All generated findings</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/findings/generate</code></td>
+<td><code>{"signal_id": "..."}</code> → generate (or fetch existing) finding</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/findings/{id}/report.md</code></td>
+<td>Audit-ready Markdown report</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/findings/{id}/status</code></td>
+<td>Update workflow status</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/findings/{id}/notes</code></td>
+<td><code>{"note": "...", "author": "Analyst"}</code> → append an analyst note</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/signals/export.csv</code></td>
+<td>All detected signals as CSV (download)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/findings/export.csv</code></td>
+<td>All findings as CSV (download)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="judging-criteria-mapping">Judging-criteria mapping<a class="headerlink" href="#judging-criteria-mapping" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Real World Relevance</strong> — models an actual compliance workflow (transaction monitoring →
+  SAR-style finding), grounded in policy citations the way a real Financial Crime Analyst would
+  need to justify a filing decision. The UPI mule-network module targets India's single largest
+  digital-payment fraud pattern directly, with the same evidence-backed, policy-cited rigor as
+  every other detector, plus a reference to the real-world 1930/CFCFRMS hand-off point.</li>
+<li><strong>Technical Execution</strong> — deterministic, testable rule engine; dependency-free retrieval;
+  clean separation between evidence-gathering (never hallucinated) and optional LLM phrasing;
+  a real running API + UI, not a slide deck. The mule-ring detector is genuinely graph-based
+  (union-find clustering over inferred account-to-account edges), not just another per-account
+  threshold rule, and its network data flows through the existing generic Signal/Finding API
+  unchanged — the interactive diagram required zero backend endpoint changes.</li>
+<li><strong>Solution Completeness</strong> — covers the full arc the brief asks for: structured transaction data</li>
+<li>unstructured policy text → NL question → governed, evidence-backed answer → documented,
+  exportable finding with a status workflow.</li>
+</ul>
+<h2 id="recent-additions">Recent additions<a class="headerlink" href="#recent-additions" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>3 new detectors (<code>engine/signals.py</code>)</strong>, each grounded in a new policy clause in
+  <code>policies/aml_transaction_monitoring.md</code>:</li>
+<li><code>AML-TM-10</code> <strong>Round-Dollar International Wire Pattern</strong> — 3+ <code>wire_out</code> transactions to a
+    non-US country, each an exact multiple of $500, from the same account within 14 days
+    (Medium severity, <code>round_dollar_wires</code>). Demo pattern: <code>ACC-1006</code>.</li>
+<li><code>AML-TM-11</code> <strong>New Account High-Value Activity</strong> — any transaction over $8,000 within 30 days
+    of the account's <code>opened_date</code> (High severity, <code>new_account_high_value</code>). Demo pattern:
+    <code>ACC-1007</code>.</li>
+<li><code>AML-TM-12</code> <strong>Transaction Velocity Spike</strong> — a day where an account's transaction count is
+    at least 3x its trailing 90-day daily average and at least 6 (Medium severity,
+    <code>velocity_spike</code>). Demo pattern: <code>ACC-1008</code>.</li>
+<li><strong>Audit trail + analyst notes on findings</strong> (<code>engine/findings.py</code>) — every <code>Finding</code> now carries
+  <code>history</code> (a <code>created</code> entry seeded at generation, plus a <code>status_change</code> entry on every status
+  update) and <code>notes</code> (free-text analyst notes with author/timestamp). <code>render_markdown</code> adds
+  <code>## Notes</code> and <code>## Status History</code> sections to the report when either is present.</li>
+<li><strong>New endpoints (<code>main.py</code>)</strong>: <code>POST /api/findings/{id}/notes</code> to add a note, and
+  <code>GET /api/signals/export.csv</code> / <code>GET /api/findings/export.csv</code> for CSV export (stdlib <code>csv</code>,
+  <code>Content-Disposition: attachment</code>).</li>
+<li><strong>UI</strong>: the Signals tab gets a severity-counts bar strip plus a severity filter, free-text
+  search, and a "Download CSV" button; the Findings tab gets the same filter/search/CSV
+  controls, and the report detail view now shows a status-history timeline and a Notes section
+  (list + add-note form) wired to the new endpoint.</li>
+</ul>
+<h2 id="extending-toward-production">Extending toward production<a class="headerlink" href="#extending-toward-production" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Swap the CSV <code>DataStore</code> for a real core-banking/data-warehouse connector.</li>
+<li>Swap the TF-IDF retriever for embeddings + a vector store once the policy corpus grows beyond
+  what keyword search handles well; the <code>PolicyIndex</code> interface (<code>search</code>, <code>get</code>, <code>get_many</code>)
+  would not need to change.</li>
+<li>Add authentication/roles so findings and status changes are attributed to a real analyst.</li>
+<li>Persist findings to a real datastore instead of the flat JSON file, and add e-signature/export
+  to whatever SAR-filing system the institution uses.</li>
+</ul>
+<h2 id="snowflake-coco-cli-solution-design">Snowflake / CoCo CLI solution design<a class="headerlink" href="#snowflake-coco-cli-solution-design" title="Permanent link">&para;</a></h2>
+<p>See <strong><a href="../snowflake-build/"><code>coco/</code></a></strong> for how this track re-platforms onto Snowflake for the hackathon's
+technical requirement to "demonstrate use of the Snowflake platform" — semantic views, Cortex Agent
+skills, a Streamlit-in-Snowflake app, and an MCP connector, following the event's official
+problem-statement slide for this track. It's a design + scaffold, not a deployed system.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

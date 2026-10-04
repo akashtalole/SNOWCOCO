@@ -1,0 +1,964 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Snowflake CoCo CLI Hackathon 2026 (GCC Edition), Track 1. Cited, audit-ready AML and fraud findings from plain-English questions.">
+      
+      
+      
+        <link rel="canonical" href="https://akashtalole.github.io/SNOWCOCO/snowflake-build/">
+      
+      
+        <link rel="prev" href="../prototype/">
+      
+      
+        <link rel="next" href="../streamlit_screenshots/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Snowflake build - SNOWCOCO - Risk, Fraud & Regulatory Intelligence Copilot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#coco-cli-solution-risk-fraud-regulatory-intelligence-copilot" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SNOWCOCO - Risk, Fraud &amp; Regulatory Intelligence Copilot" class="md-header__button md-logo" aria-label="SNOWCOCO - Risk, Fraud & Regulatory Intelligence Copilot" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SNOWCOCO - Risk, Fraud & Regulatory Intelligence Copilot
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Snowflake build
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/akashtalole/SNOWCOCO" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    akashtalole/SNOWCOCO
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SNOWCOCO - Risk, Fraud &amp; Regulatory Intelligence Copilot" class="md-nav__button md-logo" aria-label="SNOWCOCO - Risk, Fraud & Regulatory Intelligence Copilot" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SNOWCOCO - Risk, Fraud & Regulatory Intelligence Copilot
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/akashtalole/SNOWCOCO" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    akashtalole/SNOWCOCO
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coco_cli_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prototype/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prototype
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snowflake build
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snowflake build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-challenge-official-slide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Challenge (official slide)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-coco-cli-makes-possible-official-slide-quoted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What CoCo CLI Makes Possible (official slide, quoted)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-this-folder-11-with-the-six-points-above" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Files in this folder (1:1 with the six points above)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-this-maps-onto-whats-already-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How this maps onto what's already built
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-pilot-results-validated-against-a-real-snowflake-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live Pilot Results (validated against a real Snowflake account)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-further" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending further
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streamlit_screenshots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App screenshots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../judge_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Judge access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-challenge-official-slide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Challenge (official slide)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-coco-cli-makes-possible-official-slide-quoted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What CoCo CLI Makes Possible (official slide, quoted)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-this-folder-11-with-the-six-points-above" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Files in this folder (1:1 with the six points above)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-this-maps-onto-whats-already-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How this maps onto what's already built
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-pilot-results-validated-against-a-real-snowflake-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live Pilot Results (validated against a real Snowflake account)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-further" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending further
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="coco-cli-solution-risk-fraud-regulatory-intelligence-copilot">CoCo CLI Solution — Risk, Fraud &amp; Regulatory Intelligence Copilot<a class="headerlink" href="#coco-cli-solution-risk-fraud-regulatory-intelligence-copilot" title="Permanent link">&para;</a></h1>
+<p>This subfolder is the Snowflake-native solution design for this track: how the working FastAPI
+prototype one directory up (<code>tracks/risk_fraud_copilot/</code>) re-platforms onto Snowflake using CoCo
+CLI, following the official problem-statement slide for this track (see quote below). It started as
+a design + scaffold and has since been <strong>validated end-to-end against a real, live Snowflake
+account</strong> — see "Live Pilot Results" below for what has actually been run, with real captured
+output, including a deployed Streamlit-in-Snowflake app. Only the external MCP connector remains scaffold-only (not deployed). See
+<a href="../coco_cli_architecture/"><code>docs/coco_cli_architecture.md</code></a> for the shared
+agent-architecture context this scaffold is built against.</p>
+<blockquote>
+<p>⚠️ Same disclaimer as the rest of this repo: all data referenced (customers, accounts,
+transactions, jurisdiction codes, thresholds) is synthetic and fabricated for demo purposes.</p>
+</blockquote>
+<h2 id="the-challenge-official-slide">The Challenge (official slide)<a class="headerlink" href="#the-challenge-official-slide" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Banking and NBFC teams manage real-time fraud, liquidity risk, and regulatory reporting (AML,
+Basel) — largely manual today.</p>
+</blockquote>
+<h2 id="what-coco-cli-makes-possible-official-slide-quoted">What CoCo CLI Makes Possible (official slide, quoted)<a class="headerlink" href="#what-coco-cli-makes-possible-official-slide-quoted" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Generate synthetic, referentially consistent transaction + account datasets — no production
+   data needed</li>
+<li>Build semantic views over transaction and policy text for governed natural language queries</li>
+<li>Create Cortex Agent skills for fraud signal detection, AML pattern matching, and Basel metric
+   computation</li>
+<li>Orchestrate the full flow: signal → evidence → audit-ready regulatory report via CLI</li>
+<li>Scaffold a compliance officer Streamlit dashboard with cited, explainable outputs</li>
+<li>Connect to external regulatory sources via MCP for live policy lookups</li>
+</ol>
+<h2 id="files-in-this-folder-11-with-the-six-points-above">Files in this folder (1:1 with the six points above)<a class="headerlink" href="#files-in-this-folder-11-with-the-six-points-above" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>File</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/01_synthetic_data.sql"><code>01_synthetic_data.sql</code></a></td>
+<td>Snowflake DDL for the customers/accounts/transactions schema (same shape as <code>../seed_data.py</code>'s CSVs) plus a <code>GENERATOR</code>-based synthetic data population procedure — no production data touched.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/02_semantic_views.sql"><code>02_semantic_views.sql</code></a></td>
+<td>A <code>CREATE SEMANTIC VIEW</code> over the transaction/account tables with the same facts/metrics the Python detectors compute (structuring windows, layering ratios, velocity), plus a Cortex Search service over the policy corpus (<code>../policies/*.md</code>) so policy text is retrievable by meaning, not keyword.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/03_cortex_agent_skills.yaml"><code>03_cortex_agent_skills.yaml</code></a></td>
+<td>Three Cortex Agent skills — <code>fraud_signal_detection</code>, <code>aml_pattern_matching</code>, <code>basel_metric_computation</code> — each bound to the semantic view and/or search service as tools.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/04_orchestration.py"><code>04_orchestration.py</code></a></td>
+<td>The signal → evidence → finding → report flow, ported from <code>../engine/signals.py</code> + <code>../engine/findings.py</code>, driven by CLI/Python against Snowflake instead of in-process CSV loading.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/05_streamlit_app.py"><code>05_streamlit_app.py</code></a></td>
+<td>A Streamlit-in-Snowflake compliance-officer dashboard (Ask / Signals / Findings), the Snowflake-native counterpart to <code>../static/</code>.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/06_mcp_connector.md"><code>06_mcp_connector.md</code></a></td>
+<td>An MCP server/tool definition for live external regulatory lookups (e.g. RBI circular feeds), so <code>basel_metric_computation</code> and <code>aml_pattern_matching</code> can cite current external guidance, not just the static synthetic corpus.</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/07_mcp_server.sql"><code>07_mcp_server.sql</code></a>, <a href="https://github.com/akashtalole/SNOWCOCO/tree/main/tracks/risk_fraud_copilot/coco/skills"><code>skills/*/SKILL.md</code></a></td>
+<td>The real, <strong>deployed</strong> <code>CREATE MCP SERVER</code> (exposing this track's own semantic view + search service as MCP tools) and the three real <code>SKILL.md</code> files attached to the live agent — see "Live Pilot Results" below.</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/08_eval_set.sql"><code>08_eval_set.sql</code></a>, <a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/eval_config.yaml"><code>eval_config.yaml</code></a></td>
+<td>A real Cortex Agent Evaluations dataset and run against the live agent, plus registration in Snowflake CoWork — see "Live Pilot Results" below.</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/09_scheduled_task.sql"><code>09_scheduled_task.sql</code></a></td>
+<td>A real, <strong>deployed and running</strong> Snowflake <code>TASK</code> that re-runs the structuring detector on a schedule and idempotently files new findings — see "Live Pilot Results" below.</td>
+</tr>
+<tr>
+<td>—</td>
+<td><a href="https://github.com/akashtalole/SNOWCOCO/tree/main/tracks/risk_fraud_copilot/coco/cortex_project"><code>cortex_project/</code></a></td>
+<td>The semantic view and agent, pulled from and redeployed back to the live account through the actual Cortex Code CLI (<code>cortex agent-studio sv-read/sv-write/sv-deploy</code> and <code>agent-read/agent-write/agent-deploy</code>), not <code>snow sql</code> — see "Live Pilot Results" below.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/05_streamlit_app.py"><code>05_streamlit_app.py</code></a>, <a href="https://github.com/akashtalole/SNOWCOCO/blob/main/tracks/risk_fraud_copilot/coco/snowflake.yml"><code>snowflake.yml</code></a></td>
+<td>A real, <strong>deployed</strong> Streamlit-in-Snowflake app (<code>snow streamlit deploy</code>) — Ask / Signals / Findings tabs, all backed by live queries against the same governed semantic view and search service the agent uses, not a scaffold — see "Live Pilot Results" below.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-this-maps-onto-whats-already-built">How this maps onto what's already built<a class="headerlink" href="#how-this-maps-onto-whats-already-built" title="Permanent link">&para;</a></h2>
+<p>The existing FastAPI prototype already implements the hard part — the actual detection logic
+(12 rule-based + graph-based detectors in <code>../engine/signals.py</code>, including the UPI mule-ring
+union-find clustering) and the evidence/citation discipline (<code>../engine/findings.py</code>). Re-platforming
+onto Snowflake is primarily a <strong>data-layer and interface swap</strong>, not a logic rewrite:</p>
+<ul>
+<li><code>DataStore</code> (<code>../engine/models.py</code>, currently <code>csv.DictReader</code> over local files) → Snowflake
+  tables queried via the Python connector or Snowpark (<code>04_orchestration.py</code>).</li>
+<li><code>PolicyIndex</code> (<code>../engine/retrieval.py</code>, currently pure-Python TF-IDF) → the Cortex Search
+  service in <code>02_semantic_views.sql</code>.</li>
+<li><code>qa.answer_question</code> (<code>../engine/qa.py</code>, currently keyword/regex routing) → a Cortex Agent whose
+  tools are the semantic view and search service, with the same "ground the answer in retrieved
+  evidence, never invent it" discipline carried over into the agent's system instructions in
+  <code>03_cortex_agent_skills.yaml</code>.</li>
+<li><code>render_markdown</code> (<code>../engine/findings.py</code>) → unchanged in spirit; <code>04_orchestration.py</code> writes
+  the same report shape into a Snowflake <code>FINDINGS</code> table instead of <code>findings_store.json</code>.</li>
+</ul>
+<h2 id="live-pilot-results-validated-against-a-real-snowflake-account">Live Pilot Results (validated against a real Snowflake account)<a class="headerlink" href="#live-pilot-results-validated-against-a-real-snowflake-account" title="Permanent link">&para;</a></h2>
+<p>Everything below was actually run against a live Snowflake account (region <code>AWS_AP_SOUTHEAST_7</code>)
+via the Snowflake CLI (<code>snow</code>) and the Cortex Code CLI, not simulated. This is the reference pilot
+the other four tracks' live pass followed.</p>
+<p><strong>What's live:</strong> <code>RISK_FRAUD_COPILOT.CORE</code> database with real <code>CUSTOMERS</code>/<code>ACCOUNTS</code>/<code>TRANSACTIONS</code>/
+<code>FINDINGS</code> tables (25 customers, 25 accounts, 1000+ transactions), the full <code>RISK_FRAUD_SEMANTIC_VIEW</code>
+(all facts/dimensions/metrics from <code>02_semantic_views.sql</code>), a real <code>POLICY_SEARCH_SERVICE</code> Cortex
+Search service over all 31 policy sections chunked from <code>../policies/*.md</code>, and a deployed Cortex
+Agent (<code>RISK_FRAUD_REGULATORY_COPILOT</code>) actually invoked via the Cortex Agents REST API.
+The Streamlit app (<code>05_streamlit_app.py</code>) is also deployed (see "Streamlit app" below).
+<strong>Not deployed:</strong> the external MCP connector (<code>06_mcp_connector.md</code>) remains scaffold-only.</p>
+<p><strong>Real bugs found and fixed by running this live (not by inspection):</strong></p>
+<ul>
+<li><code>04_orchestration.py</code>'s <code>STRUCTURING_SQL</code>: the original window-function query's final <code>GROUP BY</code>
+  re-aggregated over every row whose <em>own</em> forward-looking <code>window_count</code> was <code>&gt;=3</code>, which
+  double-reports/under-reports evidence for any structuring episode with more than 3 deposits (a
+  crafted 4-deposit, $36,550 episode was returned as a 2-deposit, $17,800 partial match). Fixed by
+  carrying the full evidence array/total as a window aggregate on every row and taking the single
+  row per account with the largest window, instead of re-aggregating over a filtered row set.</li>
+<li><code>02_semantic_views.sql</code>'s final semantic-view <code>COMMENT</code> clause used two adjacent string literals
+  across two lines (<code>'foo ' \n 'bar'</code>) — valid in Python, <strong>invalid SQL syntax</strong> (Snowflake has no
+  implicit string concatenation). Fixed by merging into one literal. The same bug was found and
+  fixed the same way across all four other tracks' <code>02_semantic_views.sql</code> files.</li>
+<li><code>CREATE AGENT</code>'s <code>tool_resources.Analyst</code> needs the warehouse nested under
+  <code>execution_environment: {type: warehouse, warehouse: ...}</code>, not a flat <code>warehouse:</code> key — the
+  agent run API otherwise fails with error 391920, "missing an execution environment."</li>
+</ul>
+<p><strong>Real semantic-view query</strong> (proves the crafted structuring pattern resolves correctly through the
+governed metric layer, not just the raw table):</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SEMANTIC_VIEW</span><span class="p">(</span>
+<span class="w">    </span><span class="n">RISK_FRAUD_SEMANTIC_VIEW</span><span class="w"> </span><span class="n">METRICS</span><span class="w"> </span><span class="n">sub_threshold_cash_total</span><span class="w"> </span><span class="n">DIMENSIONS</span><span class="w"> </span><span class="n">accounts</span><span class="p">.</span><span class="n">account_id</span>
+<span class="p">)</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">sub_threshold_cash_total</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="c1">-- SUB_THRESHOLD_CASH_TOTAL: 36550.00 | ACCOUNT_ID: ACC-2000</span>
+</code></pre></div>
+<p><strong>Real Cortex Search query</strong> — top hit for "structuring cash deposits below reporting threshold" is
+<code>AML-TM-2</code> (Structuring / Smurfing Detection), the correct policy citation.</p>
+<p><strong>Real Cortex Agent invocation</strong> — asked the deployed agent (no prior context, cold REST call):</p>
+<blockquote>
+<p>"What is our total sub-threshold cash deposit exposure, and what policy governs structuring
+detection?"</p>
+</blockquote>
+<p>The agent autonomously called <code>Search</code> (returning <code>AML-TM-2</code>) and <code>Analyst</code> (generating and running
+SQL against <code>RISK_FRAUD_SEMANTIC_VIEW</code>), then answered:</p>
+<blockquote>
+<p>"Our total sub-threshold cash deposit exposure is <strong>$36,550</strong>, spread across <strong>4 cash deposits</strong>
+each individually in the $8,000–$9,999.99 range... Detection of these deliberately sub-threshold
+patterns is governed by <strong>AML-TM-2 (Structuring / Smurfing Detection)</strong>... Three or more sub-threshold
+cash deposits... within [a 5-business-day] window is treated as a strong indicator, requiring SAR
+review by a Financial Crime Analyst within 2 business days of detection."</p>
+</blockquote>
+<p>The number ($36,550, 4 deposits) exactly matches the crafted evidence, and the citation (AML-TM-2)
+and SLA (2 business days) are pulled verbatim from <code>../policies/aml_transaction_monitoring.md</code> — the
+same "never invent a citation" grounding discipline the Python prototype enforces in
+<code>engine/qa.py</code>, now proven live end-to-end through Cortex Analyst + Cortex Search instead of
+TF-IDF + regex routing.</p>
+<p><strong>Skills and MCP</strong> (Snowsight Agent Studio's "Skills" and "MCP" tabs): each of this track's three
+sub-skills (<code>fraud_signal_detection</code>, <code>aml_pattern_matching</code>, <code>basel_metric_computation</code>) was
+converted from the descriptive YAML in <code>03_cortex_agent_skills.yaml</code> into a real <code>SKILL.md</code> (name +
+description + instructions), uploaded to a real Snowflake stage
+(<code>@RISK_FRAUD_COPILOT.CORE.AGENT_SKILLS_STAGE/skills/&lt;name&gt;</code>), and attached to the agent via its
+<code>skills:</code> spec block. A real <code>CREATE MCP SERVER RISK_FRAUD_MCP_SERVER</code> was also created, exposing
+<code>POLICY_SEARCH_SERVICE</code> and <code>RISK_FRAUD_SEMANTIC_VIEW</code> as MCP tools, and attached via the agent's
+<code>mcp_servers:</code> block. Invoking the agent with "Run the fraud signal detection skill for account
+ACC-2000" produced a real <code>server_skill</code> tool call that loaded the SKILL.md content verbatim, then
+correctly found and reported the structuring signal citing AML-TM-2 — proving both mechanisms work,
+not just that they're configured.</p>
+<p><strong>Snowflake CoWork</strong>: the agent is registered in Snowflake CoWork/Snowflake Intelligence — a real
+<code>CREATE SNOWFLAKE INTELLIGENCE SNOWFLAKE_INTELLIGENCE_OBJECT_DEFAULT</code> object was created (it didn't
+exist yet on this account), and <code>ALTER SNOWFLAKE INTELLIGENCE ... ADD AGENT
+RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_REGULATORY_COPILOT</code> succeeded and was confirmed via <code>SHOW AGENTS
+IN SNOWFLAKE INTELLIGENCE SNOWFLAKE_INTELLIGENCE_OBJECT_DEFAULT</code> — this is the same "Add to
+Snowflake CoWork" action available in Agent Studio's UI, done here via SQL so it's reproducible.</p>
+<p><strong>Cortex Agent Evaluations</strong>: a real eval dataset (<code>RISK_FRAUD_EVAL_DATASET</code>, a genuine Snowflake
+<code>DATASET</code> object) was created via <code>SYSTEM$CREATE_EVALUATION_DATASET</code>, and a real evaluation run
+(<code>EXECUTE_AI_EVALUATION</code>) executed against the live agent across 3 questions grounded in this
+track's actual crafted data, with results retrieved via
+<code>SNOWFLAKE.LOCAL.GET_AI_EVALUATION_DATA</code>. This surfaced a genuine, documented limitation rather than
+a clean pass: <code>tool_selection_accuracy</code> scored real, varying results (1.0/0.0/1.0, consistent with
+Cortex Agents' documented non-deterministic orchestration) proving the eval harness genuinely
+invokes the live agent and scores it — but the ground-truth-comparison metrics
+(<code>answer_correctness</code>, <code>logical_consistency</code>) never scored past <code>0.0</code> with "ground truth: missing,"
+despite 7 distinct, genuine attempts at wiring the ground-truth column through
+<code>SYSTEM$CREATE_EVALUATION_DATASET</code>'s column-mapping argument (nested VARIANT, flat VARCHAR, several
+key-name variants). Full detail, including the exact error text and what was ruled out, is in
+<code>08_eval_set.sql</code>'s closing comment — reported honestly rather than papered over, since a hackathon
+demo of "testing and validation via CoCo" is more credible showing a real, reproducible harness with
+one open issue than a suspiciously perfect one.</p>
+<p><strong>Automation</strong>: a real Snowflake <code>TASK</code> (<code>DETECT_AND_FILE_STRUCTURING_TASK</code>) runs a stored
+procedure (<code>DETECT_AND_FILE_STRUCTURING</code>) on a daily schedule, re-running the corrected
+structuring-detector SQL and idempotently filing any new <code>FINDINGS</code> row (matched on
+<code>ACCOUNT_ID</code>+<code>SIGNAL_TYPE</code>, so a re-run never double-writes an audit record). Confirmed live: the
+task was created, resumed, and manually triggered via <code>EXECUTE TASK</code>; <code>INFORMATION_SCHEMA
+.TASK_HISTORY()</code> shows a real <code>SUCCEEDED</code> run, and re-running it against the same data correctly
+filed zero new findings (the account's structuring finding already existed) — proving it's safe to
+run unattended on a schedule.</p>
+<p><strong>Built through the actual CoCo CLI</strong> (addressing the biggest risk flagged in this repo's
+self-evaluation — that earlier live work was driven through <code>snow sql</code> and direct REST calls, not
+the Cortex Code CLI itself): this track's semantic view and agent were pulled from the live
+account and redeployed back to it entirely through <code>cortex agent-studio</code> subcommands, not <code>snow
+sql</code>/<code>CREATE SEMANTIC VIEW</code>/<code>CREATE AGENT</code> SQL directly:</p>
+<div class="highlight"><pre><span></span><code>cortex<span class="w"> </span>agent-studio<span class="w"> </span>sv-read<span class="w"> </span>-c<span class="w"> </span>cococlihack<span class="w"> </span>--fqn<span class="w"> </span>RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_SEMANTIC_VIEW<span class="w"> </span>--source<span class="w"> </span>snowflake
+cortex<span class="w"> </span>agent-studio<span class="w"> </span>sv-write<span class="w"> </span>-c<span class="w"> </span>cococlihack<span class="w"> </span>--yaml-content<span class="w"> </span><span class="s2">"..."</span><span class="w"> </span>--file-path<span class="w"> </span>cortex_project/risk_fraud_semantic_view.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-object<span class="w"> </span>RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_SEMANTIC_VIEW
+cortex<span class="w"> </span>agent-studio<span class="w"> </span>sv-deploy<span class="w"> </span>-c<span class="w"> </span>cococlihack<span class="w"> </span>--file-path<span class="w"> </span>cortex_project/risk_fraud_semantic_view.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--fqn<span class="w"> </span>RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_SEMANTIC_VIEW
+
+cortex<span class="w"> </span>agent-studio<span class="w"> </span>agent-read<span class="w"> </span>-c<span class="w"> </span>cococlihack<span class="w"> </span>--fqn<span class="w"> </span>RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_REGULATORY_COPILOT<span class="w"> </span>--source<span class="w"> </span>snowflake
+cortex<span class="w"> </span>agent-studio<span class="w"> </span>agent-write<span class="w"> </span>-c<span class="w"> </span>cococlihack<span class="w"> </span>--yaml-content<span class="w"> </span><span class="s2">"..."</span><span class="w"> </span>--file-path<span class="w"> </span>cortex_project/risk_fraud_agent.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source-object<span class="w"> </span>RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_REGULATORY_COPILOT
+cortex<span class="w"> </span>agent-studio<span class="w"> </span>agent-deploy<span class="w"> </span>-c<span class="w"> </span>cococlihack<span class="w"> </span>--file-path<span class="w"> </span>cortex_project/risk_fraud_agent.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--fqn<span class="w"> </span>RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_REGULATORY_COPILOT
+</code></pre></div>
+<p>All six commands returned <code>"success": true</code>. This is a deliberately safe redeploy, not a
+regeneration: <code>sv-read</code>/<code>agent-read</code> pull the <em>exact already-correct, hand-tuned</em> live objects
+(with all their citation-accurate metric formulas and skill/MCP/tool wiring intact) into local
+YAML tracked by <code>cortex_project/cortex-project.yaml</code>, and <code>sv-deploy</code>/<code>agent-deploy</code> push that
+same YAML straight back — reusing the validated logic through the right tool, rather than risking
+a from-scratch <code>sv-generate</code> producing a different (and possibly less accurate) semantic view.
+Verified nothing broke: the semantic view still returns <code>$36,550</code>/<code>ACC-2000</code> for
+<code>sub_threshold_cash_total</code> exactly as before, and <code>DESCRIBE AGENT</code> confirms all 3 skills, the MCP
+server, and both tools survived the round-trip unchanged. See <code>cortex_project/</code> for the pulled
+YAML files.</p>
+<p><strong>Streamlit app — actually deployed, not scaffolded</strong>: (<a href="../streamlit_screenshots/">screenshots</a>) <code>05_streamlit_app.py</code> was rewritten from a
+commented-out design stub into a genuinely working app and deployed via <code>snow streamlit deploy</code>
+(confirmed live: <code>SHOW STREAMLITS</code> lists <code>RISK_FRAUD_STREAMLIT_APP</code>, with a real Snowsight URL).
+The Ask tab queries <code>POLICY_SEARCH_SERVICE</code> and <code>RISK_FRAUD_SEMANTIC_VIEW</code> directly — the same two
+governed tools the deployed agent uses — rather than calling the agent's REST endpoint, since a
+Streamlit-in-Snowflake app has no outbound network access by default (that would need an External
+Access Integration bound to the account's own REST endpoint). One real bug found building it:
+<code>SNOWFLAKE.CORTEX.SEARCH_PREVIEW</code>'s request-payload argument must be a literal/bound string, not a
+computed <code>OBJECT_CONSTRUCT()</code>/<code>TO_JSON()</code> expression — both failed live with "unexpected
+argument"; fixed by building the JSON payload in Python and passing it as a single bind
+parameter. Every query the app runs was verified end-to-end via the Python connector before and
+after deployment, reproducing the exact same results documented above ($36,550 exposure,
+ACC-2000, AML-TM-2 citation, the <code>FIND-LIVE01</code> finding) — proving the deployed app's actual code
+runs correctly against the live account, not just that the file uploaded. (<code>snow streamlit
+execute</code> for a fully headless smoke-test returned "Operation not supported" for this
+interactive-widget app — a real CLI limitation on this account, not a bug in the app; the
+connector-level replay above is the verification that was used instead.)</p>
+<h2 id="extending-further">Extending further<a class="headerlink" href="#extending-further" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Wire <code>06_mcp_connector.md</code>'s tool definitions into an actual running MCP server once a specific
+  external regulatory source is chosen.</li>
+<li>Replace the synthetic-data generator in <code>01_synthetic_data.sql</code> with a real (access-controlled,
+  masked) core-banking feed once this leaves the demo stage.</li>
+<li>Layer role-based access control on the Streamlit app (<code>05_streamlit_app.py</code>) so findings and
+  status changes are attributed to a real, authenticated analyst — the same gap noted in the
+  parent track's own README.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

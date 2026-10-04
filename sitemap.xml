@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://akashtalole.github.io/SNOWCOCO/</loc>
+         <lastmod>2026-10-04</lastmod>
+    </url>
+    <url>
+         <loc>https://akashtalole.github.io/SNOWCOCO/coco_cli_architecture/</loc>
+         <lastmod>2026-10-04</lastmod>
+    </url>
+    <url>
+         <loc>https://akashtalole.github.io/SNOWCOCO/judge_access/</loc>
+         <lastmod>2026-10-04</lastmod>
+    </url>
+    <url>
+         <loc>https://akashtalole.github.io/SNOWCOCO/prototype/</loc>
+         <lastmod>2026-10-04</lastmod>
+    </url>
+    <url>
+         <loc>https://akashtalole.github.io/SNOWCOCO/snowflake-build/</loc>
+         <lastmod>2026-10-04</lastmod>
+    </url>
+    <url>
+         <loc>https://akashtalole.github.io/SNOWCOCO/streamlit_screenshots/</loc>
+         <lastmod>2026-10-04</lastmod>
+    </url>
+</urlset>
