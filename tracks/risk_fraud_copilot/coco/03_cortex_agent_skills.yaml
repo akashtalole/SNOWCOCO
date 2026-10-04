@@ -1,0 +1,85 @@
+# ==============================================================================
+# 03_cortex_agent_skills.yaml
+# "Create Cortex Agent skills for fraud signal detection, AML pattern
+#  matching, and Basel metric computation."
+#
+# Skill definitions for a Snowflake Cortex Agent, matching the "Procedural
+# Memory / Skill.md" concept in ../../../docs/coco_cli_architecture.md.
+# Each skill's `tools` bind to the semantic view / search service from
+# 02_semantic_views.sql; `instructions` carries over the evidence-grounding
+# discipline already enforced by ../engine/qa.py (never answer beyond what a
+# tool actually returned).
+# ==============================================================================
+
+agent_name: risk_fraud_regulatory_copilot
+
+skills:
+  - name: fraud_signal_detection
+    description: >
+      Detects account-level and network-level fraud signals (structuring,
+      layering, dormant-account reactivation, card testing, UPI mule hub/ring)
+      by querying the transaction semantic view, mirroring the rule-based and
+      graph-based detectors in ../engine/signals.py.
+    instructions: |
+      Given an account_id, customer_id, or free-text question, query
+      RISK_FRAUD_SEMANTIC_VIEW for the relevant metrics (sub_threshold_cash_total,
+      high_risk_jurisdiction_wire_total, daily_txn_count, upi_total) over the
+      account/window in question. Only report a signal when the underlying
+      metric crosses the threshold defined in the cited policy section -- do
+      not infer a signal from a metric you have not actually retrieved. Every
+      signal you report must name: signal_type, severity, the account_id(s)
+      and customer_id(s) involved, the metric value(s) that triggered it, and
+      the policy section_id it cites.
+    tools:
+      - type: cortex_analyst
+        semantic_view: RISK_FRAUD_SEMANTIC_VIEW
+      - type: sql_query
+        description: >
+          Escape hatch for graph-based detection (e.g. the UPI mule-ring
+          union-find clustering in detect_upi_mule_ring) that a semantic
+          view's metrics alone cannot express -- run the same window/graph
+          logic as a parameterized SQL query against TRANSACTIONS/ACCOUNTS.
+
+  - name: aml_pattern_matching
+    description: >
+      Answers AML/KYC/sanctions questions and matches transaction activity
+      against the AML transaction-monitoring and sanctions-screening policy
+      corpus, citing the exact policy section for every claim.
+    instructions: |
+      Use the policy_search tool to retrieve the most relevant policy
+      section(s) for the question. Quote or closely paraphrase only what the
+      retrieved section actually says; always include its section_id
+      (e.g. AML-TM-2, SANC-2, UPI-MULE-3) in the answer. If no section scores
+      above a reasonable relevance threshold, say so explicitly rather than
+      guessing a plausible-sounding rule.
+    tools:
+      - type: cortex_search
+        search_service: POLICY_SEARCH_SERVICE
+      - type: cortex_analyst
+        semantic_view: RISK_FRAUD_SEMANTIC_VIEW
+
+  - name: basel_metric_computation
+    description: >
+      Computes Basel-style liquidity/capital metrics (e.g. LCR-style ratios)
+      referenced in ../policies/basel_liquidity_lcr.md, and explains a
+      computed value by tracing it back to its inputs.
+    instructions: |
+      Compute the requested metric only from figures available in
+      RISK_FRAUD_SEMANTIC_VIEW or an explicitly supplied input; never
+      fabricate a balance-sheet figure that was not retrieved. State the
+      formula used and cite the LCR-* policy section that defines it.
+    tools:
+      - type: cortex_analyst
+        semantic_view: RISK_FRAUD_SEMANTIC_VIEW
+      - type: cortex_search
+        search_service: POLICY_SEARCH_SERVICE
+
+# Shared guardrails applied to every skill above (the "End Loop Guardrails"
+# box in the Loop Harness diagram): never state a transaction ID, account ID,
+# amount, or policy citation that was not literally returned by a tool call
+# in this turn. This is the same rule ../engine/qa.py's refine_with_llm()
+# already enforces on the Python prototype's optional LLM phrasing pass.
+guardrails:
+  - no_unsourced_entities: true
+  - require_citation_for_policy_claims: true
+  - max_tool_calls_per_turn: 6

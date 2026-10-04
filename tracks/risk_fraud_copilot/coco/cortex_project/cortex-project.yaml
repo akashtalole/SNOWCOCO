@@ -1,0 +1,12 @@
+version: 1
+artifacts:
+  - path: risk_fraud_semantic_view.yaml
+    type: semantic_view
+    targets:
+      default:
+        object: RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_SEMANTIC_VIEW
+  - path: risk_fraud_agent.yaml
+    type: cortex_agent
+    targets:
+      default:
+        object: RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_REGULATORY_COPILOT

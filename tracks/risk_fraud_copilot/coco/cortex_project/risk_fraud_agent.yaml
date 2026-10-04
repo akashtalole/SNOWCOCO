@@ -1,0 +1,55 @@
+models:
+  orchestration: "auto"
+orchestration:
+  tool_not_accessible: "accept"
+instructions:
+  response: "Ground every claim in tool output. Never state a threshold, policy rule,\
+    \ or transaction fact that was not returned by a tool call. Always cite the policy\
+    \ SECTION_ID (e.g. AML-TM-2, UPI-MULE-3) behind any compliance claim.\n"
+  orchestration: "For questions about transaction/account facts or aggregate exposure,\
+    \ call Analyst against RISK_FRAUD_SEMANTIC_VIEW. For questions about policy thresholds,\
+    \ SLAs, or regulatory citations, call Search against POLICY_SEARCH_SERVICE. Prefer\
+    \ the fraud_signal_detection, aml_pattern_matching, or basel_metric_computation\
+    \ skill when the question matches its stated purpose. Combine tools when a question\
+    \ needs a number and its governing policy citation together.\n"
+  sample_questions:
+    - question: "What is our total sub-threshold cash deposit exposure?"
+    - question: "What does policy say about structuring detection?"
+tools:
+  - tool_spec:
+      type: "cortex_analyst_text_to_sql"
+      name: "Analyst"
+      description: "Query transaction, account, and customer facts and metrics via\
+        \ the governed semantic view."
+  - tool_spec:
+      type: "cortex_search"
+      name: "Search"
+      description: "Search AML/KYC/sanctions/CTR/Basel/UPI-mule policy sections for\
+        \ citations."
+skills:
+  - name: "fraud_signal_detection"
+    source:
+      type: "STAGE"
+      path: "@RISK_FRAUD_COPILOT.CORE.AGENT_SKILLS_STAGE/skills/fraud_signal_detection"
+  - name: "aml_pattern_matching"
+    source:
+      type: "STAGE"
+      path: "@RISK_FRAUD_COPILOT.CORE.AGENT_SKILLS_STAGE/skills/aml_pattern_matching"
+  - name: "basel_metric_computation"
+    source:
+      type: "STAGE"
+      path: "@RISK_FRAUD_COPILOT.CORE.AGENT_SKILLS_STAGE/skills/basel_metric_computation"
+mcp_servers:
+  - server_spec:
+      name: "RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_MCP_SERVER"
+tool_resources:
+  Analyst:
+    semantic_view: "RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_SEMANTIC_VIEW"
+    execution_environment:
+      type: "warehouse"
+      warehouse: "COMPUTE_WH"
+  Search:
+    search_service: "RISK_FRAUD_COPILOT.CORE.POLICY_SEARCH_SERVICE"
+    id_column: "SECTION_ID"
+    title_column: "TITLE"
+    max_results: "5"

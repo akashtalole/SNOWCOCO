@@ -1,0 +1,124 @@
+name: RISK_FRAUD_SEMANTIC_VIEW
+description: "Governed semantic layer for the Risk, Fraud & Regulatory Intelligence Copilot -- every metric here has a 1:1 policy citation in ../policies/*.md."
+tables:
+  - name: ACCOUNTS
+    synonyms:
+      - bank accounts
+    description: "Bank accounts, one row per account."
+    base_table:
+      database: RISK_FRAUD_COPILOT
+      schema: CORE
+      table: ACCOUNTS
+    primary_key:
+      columns:
+        - ACCOUNT_ID
+    dimensions:
+      - name: ACCOUNT_ID
+        expr: accounts.ACCOUNT_ID
+        data_type: VARCHAR(20)
+        access_modifier: public_access
+      - name: OPENED_DATE
+        expr: accounts.OPENED_DATE
+        data_type: DATE
+        access_modifier: public_access
+  - name: CUSTOMERS
+    synonyms:
+      - clients
+      - account holders
+    description: "Bank customers, one row per customer."
+    base_table:
+      database: RISK_FRAUD_COPILOT
+      schema: CORE
+      table: CUSTOMERS
+    primary_key:
+      columns:
+        - CUSTOMER_ID
+    dimensions:
+      - name: COUNTRY
+        expr: customers.COUNTRY
+        data_type: VARCHAR(5)
+        access_modifier: public_access
+      - name: CUSTOMER_ID
+        expr: customers.CUSTOMER_ID
+        data_type: VARCHAR(20)
+        access_modifier: public_access
+      - name: RISK_RATING
+        synonyms:
+          - KYC risk rating
+        expr: customers.RISK_RATING
+        data_type: VARCHAR(10)
+        access_modifier: public_access
+  - name: TRANSACTIONS
+    synonyms:
+      - txns
+      - payments
+      - transfers
+    description: "Every transaction (cash, wire, ACH, UPI, ATM, card) across all accounts."
+    base_table:
+      database: RISK_FRAUD_COPILOT
+      schema: CORE
+      table: TRANSACTIONS
+    primary_key:
+      columns:
+        - TXN_ID
+    dimensions:
+      - name: CHANNEL
+        expr: transactions.CHANNEL
+        data_type: VARCHAR(20)
+        access_modifier: public_access
+      - name: COUNTERPARTY_COUNTRY
+        expr: transactions.COUNTERPARTY_COUNTRY
+        data_type: VARCHAR(5)
+        access_modifier: public_access
+      - name: TXN_DATE
+        expr: DATE(transactions.TXN_TIMESTAMP)
+        data_type: DATE
+        access_modifier: public_access
+      - name: TXN_TYPE
+        synonyms:
+          - transaction type
+        expr: transactions.TYPE
+        data_type: VARCHAR(30)
+        access_modifier: public_access
+    facts:
+      - name: AMOUNT_FACT
+        description: Raw transaction amount in its native currency.
+        expr: transactions.AMOUNT
+        data_type: "NUMBER(18,2)"
+        access_modifier: public_access
+    metrics:
+      - name: DAILY_TXN_COUNT
+        description: "Transaction count, for velocity-spike comparisons against a trailing average -- AML-TM-12."
+        expr: COUNT(transactions.TXN_ID)
+        access_modifier: public_access
+      - name: HIGH_RISK_JURISDICTION_WIRE_TOTAL
+        description: Total wire value touching a Designated High-Risk Jurisdiction -- AML-TM-5.
+        expr: |-
+          SUM(IFF(transactions.TYPE IN ('wire_in', 'wire_out')
+                              AND transactions.COUNTERPARTY_COUNTRY IN ('ZX', 'QW'),
+                              transactions.AMOUNT, 0))
+        access_modifier: public_access
+      - name: SUB_THRESHOLD_CASH_TOTAL
+        description: Total value of individually sub-$10k cash deposits -- AML-TM-2 structuring exposure.
+        expr: |-
+          SUM(IFF(transactions.TYPE = 'cash_deposit'
+                              AND transactions.AMOUNT BETWEEN 8000 AND 9999.99,
+                              transactions.AMOUNT, 0))
+        access_modifier: public_access
+      - name: UPI_TOTAL
+        description: Total UPI-rail transaction value -- feeds the UPI mule-hub/ring detectors (UPI-MULE-2/3).
+        expr: "SUM(IFF(transactions.TYPE IN ('upi_in', 'upi_out'), transactions.AMOUNT, 0))"
+        access_modifier: public_access
+relationships:
+  - name: ACCOUNTS_TO_CUSTOMERS
+    left_table: ACCOUNTS
+    right_table: CUSTOMERS
+    relationship_columns:
+      - left_column: CUSTOMER_ID
+        right_column: CUSTOMER_ID
+  - name: TRANSACTIONS_TO_ACCOUNTS
+    left_table: TRANSACTIONS
+    right_table: ACCOUNTS
+    relationship_columns:
+      - left_column: ACCOUNT_ID
+        right_column: ACCOUNT_ID

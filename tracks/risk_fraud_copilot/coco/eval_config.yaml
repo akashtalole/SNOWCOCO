@@ -1,0 +1,12 @@
+evaluation:
+  agent_params:
+    agent_name: "RISK_FRAUD_COPILOT.CORE.RISK_FRAUD_REGULATORY_COPILOT"
+    agent_type: "CORTEX AGENT"
+    agent_version: "LAST"
+  source_metadata:
+    type: "dataset"
+    dataset_name: "risk_fraud_eval_dataset"
+
+metrics:
+  - "answer_correctness"
+  - "tool_selection_accuracy"

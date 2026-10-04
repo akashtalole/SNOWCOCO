@@ -1,0 +1,6 @@
+fastapi>=0.115
+uvicorn>=0.30
+
+# Optional: only needed if you set ANTHROPIC_API_KEY to have the Copilot's
+# answers phrased by Claude instead of the built-in template composer.
+# anthropic>=0.34

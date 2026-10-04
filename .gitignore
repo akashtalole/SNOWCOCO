@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.run/
+
+# Each track generates its own data at setup time (reproducible, fixed seed)
+tracks/*/data/*.csv
+
+# Generated at runtime as findings/actions/recommendations are created via each track's API/UI
+tracks/*/data/*.json

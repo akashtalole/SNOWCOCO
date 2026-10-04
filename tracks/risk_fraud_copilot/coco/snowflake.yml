@@ -1,0 +1,12 @@
+definition_version: "2"
+entities:
+  risk_fraud_streamlit_app:
+    type: streamlit
+    identifier:
+      name: RISK_FRAUD_STREAMLIT_APP
+    stage: streamlit_stage
+    query_warehouse: COMPUTE_WH
+    main_file: 05_streamlit_app.py
+    title: "Risk, Fraud & Regulatory Intelligence Copilot"
+    artifacts:
+      - 05_streamlit_app.py

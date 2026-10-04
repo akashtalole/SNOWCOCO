@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Risk, Fraud & Regulatory Intelligence Copilot</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>Risk, Fraud &amp; Regulatory Intelligence Copilot</h1>
+  <span class="sub">Synthetic demo data · evidence-backed answers · signal → evidence → documented finding</span>
+</header>
+
+<nav class="tabs">
+  <button data-tab="ask" class="active">Ask</button>
+  <button data-tab="signals">Signals</button>
+  <button data-tab="upi">UPI Mule Network</button>
+  <button data-tab="findings">Findings &amp; Reports</button>
+</nav>
+
+<main>
+  <section id="panel-ask" class="panel active">
+    <form id="ask-form">
+      <input id="ask-input" type="text" autocomplete="off"
+             placeholder="Ask about an account, a risk pattern, or a policy… e.g. Why was ACC-1001 flagged?" />
+      <button class="btn" type="submit">Ask</button>
+    </form>
+    <div class="suggestions" id="suggestions"></div>
+    <div id="chat-log"></div>
+  </section>
+
+  <section id="panel-signals" class="panel">
+    <div id="signals-stats" class="stats-strip"></div>
+    <div class="toolbar">
+      <select id="signals-severity-filter">
+        <option value="">All severities</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+      <input id="signals-search" type="text" placeholder="Search account, customer, summary…" />
+      <a class="btn secondary" href="/api/signals/export.csv" download>Download CSV</a>
+    </div>
+    <div id="signals-list"></div>
+  </section>
+
+  <section id="panel-upi" class="panel">
+    <p class="upi-intro">India's #1 digital-payment fraud pattern: funds are socially engineered
+      out of a victim, then rapidly layered through a chain of recruited "mule" accounts on the
+      UPI rail before cash-out. <b>Mule Hub</b> detection flags a single account's fan-in/fan-out
+      signature; <b>Mule Ring</b> detection is graph-based — it clusters multiple flagged hubs
+      that are directly connected into one laundering network, which no single-account rule can see.</p>
+    <div id="upi-stats" class="stats-strip"></div>
+    <div class="net-legend">
+      <span><i class="net-dot hub"></i> Mule hub (tracked account)</span>
+      <span><i class="net-dot source"></i> Inbound source VPA</span>
+      <span><i class="net-dot cashout"></i> Outbound cash-out VPA</span>
+    </div>
+    <div id="upi-list"></div>
+  </section>
+
+  <section id="panel-findings" class="panel">
+    <div class="toolbar">
+      <select id="findings-severity-filter">
+        <option value="">All severities</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+      <input id="findings-search" type="text" placeholder="Search account, customer, narrative…" />
+      <a class="btn secondary" href="/api/findings/export.csv" download>Download CSV</a>
+    </div>
+    <div id="findings-list"></div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
